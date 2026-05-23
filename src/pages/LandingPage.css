@@ -1,0 +1,290 @@
+:root {
+  --color-bg: #050505;
+  --color-black: #0a0a0a;
+  --color-white: #ffffff;
+  --color-sky: #0ea5e9;
+  --color-sky-glow: rgba(14, 165, 233, 0.5);
+  --color-yellow: #f59e0b;
+  --color-red: #ef4444;
+}
+
+.landing-container {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Overall Glow Effect */
+.landing-glow-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80vw;
+  height: 80vh;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, var(--color-sky-glow) 0%, transparent 60%);
+  filter: blur(100px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.floating-icons-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.emoji-float {
+  position: absolute;
+  font-size: 1.5rem;
+  /* Soft glow effect for emojis */
+  filter: drop-shadow(0 0 5px rgba(14, 165, 233, 0.4));
+  opacity: 0.6;
+  user-select: none;
+}
+
+.landing-content {
+  z-index: 10;
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pop-over-card {
+  background: rgba(18, 18, 18, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(14, 165, 233, 0.3);
+  padding: 4rem;
+  border-radius: 24px;
+  text-align: center;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8),
+              inset 0 0 40px rgba(14, 165, 233, 0.3),
+              0 0 50px rgba(14, 165, 233, 0.4); /* Pop-over glow */
+  transform-origin: center center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.landing-title {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  color: var(--color-white);
+  text-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
+
+.text-sky {
+  color: var(--color-sky);
+  text-shadow: 0 0 20px var(--color-sky-glow);
+}
+
+/* Developer 3D Text Container */
+.developer-container {
+  position: relative;
+  margin: 2rem 0;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.developer-3d-text {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--color-sky);
+  text-transform: uppercase;
+  letter-spacing: 0.5rem;
+  transform-style: preserve-3d;
+  /* text-shadow: 
+    1px 1px 0 #0284c7,
+    2px 2px 0 #0284c7,
+    3px 3px 0 #0284c7,
+    4px 4px 0 #0284c7,
+    5px 5px 0 #0284c7,
+    6px 6px 15px rgba(0, 0, 0, 0.8),
+    0 0 30px rgba(14, 165, 233, 0.8); */
+  position: relative;
+  z-index: 10;
+  /* font-family: 'Space Grotesk', sans-serif; */
+  font-family: 'Share Tech Mono', monospace;
+  cursor: default;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+
+.dev-orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 450px;
+  height: 120px;
+  margin-left: -225px;
+  margin-top: -60px;
+  border-radius: 50%;
+  border: 2px dashed rgba(14, 165, 233, 0.4);
+  box-shadow: 0 0 20px rgba(14, 165, 233, 0.2);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.ring-2 {
+  width: 350px;
+  height: 90px;
+  margin-left: -175px;
+  margin-top: -45px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Transparent 3D Cube */
+.cube-wrapper {
+  margin: 3rem 0;
+  perspective: 800px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cube {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  transform-style: preserve-3d;
+  animation: rotateCube 15s infinite alternate linear;
+}
+
+.cube-face {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  background: rgba(14, 165, 233, 0.1);
+  border: 2px solid rgba(14, 165, 233, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  backdrop-filter: blur(2px);
+  box-shadow: inset 0 0 20px rgba(14, 165, 233, 0.3);
+}
+
+.cube-face.front  { transform: translateZ(40px); }
+.cube-face.back   { transform: rotateY(180deg) translateZ(40px); }
+.cube-face.right  { transform: rotateY(90deg) translateZ(40px); }
+.cube-face.left   { transform: rotateY(-90deg) translateZ(40px); }
+.cube-face.top    { transform: rotateX(90deg) translateZ(40px); }
+.cube-face.bottom { transform: rotateX(-90deg) translateZ(40px); }
+
+@keyframes rotateCube {
+  0% { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
+  50% { transform: rotateX(360deg) rotateY(180deg) rotateZ(90deg); }
+  100% { transform: rotateX(720deg) rotateY(360deg) rotateZ(180deg); }
+}
+
+.ready-button {
+  background: linear-gradient(135deg, var(--color-yellow), #d97706);
+  color: var(--color-black);
+  border: none;
+  padding: 1rem 3rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  border-radius: 50px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.5),
+              0 0 30px rgba(245, 158, 11, 0.6); /* Button glow */
+  transition: all 0.3s ease;
+  font-family: 'Outfit', sans-serif;
+  position: relative;
+  z-index: 20;
+}
+
+.ready-button:hover {
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+}
+
+.enter-icon {
+  font-size: 1.8rem;
+  filter: drop-shadow(0 2px 5px rgba(0,0,0,0.3));
+}
+
+/* ── Landing page responsive ── */
+@media (max-width: 768px) {
+  .pop-over-card {
+    padding: 2.5rem 1.5rem;
+    border-radius: 16px;
+    margin: 1rem;
+    width: calc(100vw - 2rem);
+    box-sizing: border-box;
+  }
+  .landing-title {
+    font-size: clamp(1.6rem, 7vw, 2.5rem);
+  }
+  .developer-3d-text {
+    font-size: clamp(1.1rem, 5vw, 1.8rem);
+    letter-spacing: 0.15rem;
+  }
+  .developer-container {
+    height: 80px;
+    margin: 1rem 0;
+  }
+  /* Shrink orbit rings so they don't overflow the card */
+  .dev-orbit {
+    width: 280px;
+    height: 80px;
+    margin-left: -140px;
+    margin-top: -40px;
+  }
+  .ring-2 {
+    width: 220px;
+    height: 60px;
+    margin-left: -110px;
+    margin-top: -30px;
+  }
+  .cube-wrapper {
+    margin: 1.5rem 0;
+  }
+  .ready-button {
+    font-size: 1.1rem;
+    padding: 0.8rem 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .pop-over-card {
+    padding: 2rem 1rem;
+    margin: 0.5rem;
+    width: calc(100vw - 1rem);
+  }
+  .developer-3d-text {
+    font-size: clamp(0.9rem, 4.5vw, 1.4rem);
+    letter-spacing: 0.08rem;
+  }
+  .dev-orbit {
+    width: 220px;
+    height: 60px;
+    margin-left: -110px;
+    margin-top: -30px;
+  }
+  .ring-2 {
+    width: 170px;
+    height: 46px;
+    margin-left: -85px;
+    margin-top: -23px;
+  }
+}
